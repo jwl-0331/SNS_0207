@@ -3,7 +3,7 @@
 #wrap{
 	width:1200px;
 	margin:auto;
-	background-color:#6c757d;
+	background-color:#343a40;
 }
 header{
 	height:70px;
@@ -14,9 +14,8 @@ header{
 }
 
 .contents > .join-box{
-	height:400px;
+	height:450px;
 	width:350px;
-	background-color:#343a40;
 }
 footer{
 	height:50px;

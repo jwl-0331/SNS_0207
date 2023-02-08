@@ -18,15 +18,15 @@
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/header.jsp"/>
 		<section class="contents d-flex justify-content-center">
-			<div class="join-box my-5 rounded">
-				<h2 class="text-center">SignUp</h2>
-				<div class="col-10">
-				<input type="text" placeholder="UserId" class="form-control ml-4 mt-3" id="idInput">
-				<input type="password" placeholder="Password" class="form-control ml-4 mt-3"id="passwordInput">
-				<input type="password" placeholder="PasswordCheck" class="form-control ml-4 mt-3" id="passwordChkInput">
-				<input type="text" placeholder="Username" class="form-control ml-4 mt-3" id="nameInput">
-				<input type="text" placeholder="Email" class="form-control ml-4 mt-3" id="emailInput">
-				<button type="button" class="btn btn-block bg-primary ml-4 mt-3" id="joinBtn">회원가입</button>
+			<div class="join-box rounded mt-5">
+				<h2 class="text-center text-white">SignUp</h2>
+				<div class="col-11">
+					<input type="text" placeholder="UserId" class="form-control ml-4 mt-3" id="idInput">
+					<input type="password" placeholder="Password" class="form-control ml-4 mt-3"id="passwordInput">
+					<input type="password" placeholder="PasswordCheck" class="form-control ml-4 mt-3" id="passwordChkInput">
+					<input type="text" placeholder="Username" class="form-control ml-4 mt-3" id="nameInput">
+					<input type="text" placeholder="Email" class="form-control ml-4 mt-3" id="emailInput">
+					<button type="button" class="btn btn-block bg-primary ml-4 mt-3 text-white" id="joinBtn">회원가입</button>
 				</div>
 			</div>
 		</section>
