@@ -15,6 +15,15 @@
  			, `createdAt`
  			, `updatedAt`
  		)
+ 		VALUE
+ 		(
+ 			#{loginId}
+ 			, #{password}
+ 			, #{name}
+ 			, #{email}
+ 			, now()
+ 			, now()
+ 		)
  		
  	</insert>
  </mapper>

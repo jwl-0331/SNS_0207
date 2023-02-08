@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,25 +16,69 @@
 </head>
 <body>
 	<div id="wrap">
-		<header>
-			<h1 class="pt-2 pl-2">Financialgram</h1>
-		</header>
+		<c:import url="/WEB-INF/jsp/include/header.jsp"/>
 		<section class="contents d-flex justify-content-center">
 			<div class="join-box my-5 rounded">
 				<h2 class="text-center">SignUp</h2>
 				<div class="col-10">
-				<input type="text" placeholder="UserId" class="form-control ml-4 mt-3">
-				<input type="text" placeholder="Password" class="form-control ml-4 mt-3">
-				<input type="text" placeholder="PasswordCheck" class="form-control ml-4 mt-3">
-				<input type="text" placeholder="Username" class="form-control ml-4 mt-3">
-				<input type="text" placeholder="Email" class="form-control ml-4 mt-3">
-				<button type="button" class="btn btn-block bg-primary ml-4 mt-3">회원가입</button>
+				<input type="text" placeholder="UserId" class="form-control ml-4 mt-3" id="idInput">
+				<input type="password" placeholder="Password" class="form-control ml-4 mt-3"id="passwordInput">
+				<input type="password" placeholder="PasswordCheck" class="form-control ml-4 mt-3" id="passwordChkInput">
+				<input type="text" placeholder="Username" class="form-control ml-4 mt-3" id="nameInput">
+				<input type="text" placeholder="Email" class="form-control ml-4 mt-3" id="emailInput">
+				<button type="button" class="btn btn-block bg-primary ml-4 mt-3" id="joinBtn">회원가입</button>
 				</div>
 			</div>
 		</section>
-		<footer>
-			<div class="text-center">Copyright © Financialgram 2023</div>
-		</footer>
+		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 	</div>
+	<script>
+		$(document).ready(function(){
+			$("#joinBtn").on("click",function(){
+				let id = $("#idInput").val();
+				let password = $("#passwordInput").val();
+				let passwordChk = $("#passwordChkInput").val();
+				let name = $("#nameInput").val();
+				let email = $("#emailInput").val();
+				let urlAddress = [".co.kr",".com",".net",".or.kr","go.kr"];
+				let check1 = false;
+				let check2 = false;
+				
+				if(id == ""){
+					alert("아이디를 입력해주세요");
+					return;
+				}
+				if(password == ""){
+					alert("비밀번호를 입력해주세요");
+					return;
+				}
+				if(name == ""){
+					alert("이름을 입력해주세요");
+					return;
+				}
+				if(email == ""){
+					alert("이메일을 입력해주세요");
+					return;
+				}
+				
+				if(email.indexOf("@") > 0){
+					check1 = true;
+				}
+				for(var i=0; i < urlAddress.length; i++){
+					if(email.indexOf(urlAddress[i]) > 0){
+						check2 = true;
+					}
+				}
+				if(!(check1 && check2)){
+					alert("이메일 형식을 확인해주세요");
+					return;
+				}
+				if(password != passwordChk){
+					alert("비밀번호가 일치하지 않습니다.");
+					return;
+				}
+			});
+		});
+	</script>
 </body>
 </html>
