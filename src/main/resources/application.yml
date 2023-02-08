@@ -1,0 +1,19 @@
+#spring.mvc.view.prefix=/WEB-INF/jsp/
+#spring.mvc.view.suffix=.jsp
+#spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+#spring.datasource.url=jdbc:mysql://localhost:3306/jwl_1213
+#spring.datasource.username=root
+#spring.datasource.password=dlwodnjs2!
+
+spring:
+  mvc:
+    static-path-pattern: /static/**
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sns_0206
+    username: root
+    password: dlwodnjs2!
