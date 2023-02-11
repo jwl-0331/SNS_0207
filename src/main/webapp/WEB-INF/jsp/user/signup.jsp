@@ -11,11 +11,10 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/static/css/style.css" type="text/css">
 </head>
 <body>
-
 	<div class="container">
 		<section class="content d-flex justify-content-center my-5">
 			<div>
@@ -28,7 +27,7 @@
 						</div>
 						
 						<div class="d-flex  mt-3">
-							<input type="text" id="loginIdInput" class="form-control" placeholder="아이디">
+							<input type="text" id="idInput" class="form-control" placeholder="아이디">
 							<button type="button" class="btn btn-info btn-sm ml-2" id="isDuplicateBtn">중복확인</button>
 						</div>
 						
@@ -36,7 +35,7 @@
 						<div class="small text-danger d-none" id="duplicateText">중복된 아이디 입니다</div>
 					
 						<input type="password" id="passwordInput" class="form-control mt-3" placeholder="패스워드">
-						<input type="password" id="passwordConfirmInput" class="form-control mt-3" placeholder="패스워드 확인">
+						<input type="password" id="passwordChkInput" class="form-control mt-3" placeholder="패스워드 확인">
 						
 						<input type="text" id="nameInput" class="form-control mt-3" placeholder="이름">
 						<input type="text" id="emailInput" class="form-control mt-3" placeholder="이메일">
@@ -56,7 +55,7 @@
 	</div>
 	<script>
 		$(document).ready(function(){
-			$("#joinBtn").on("click",function(){
+			$("#signUpBtn").on("click",function(){
 				let id = $("#idInput").val();
 				let password = $("#passwordInput").val();
 				let passwordChk = $("#passwordChkInput").val();
@@ -106,7 +105,7 @@
 						, data:{"loginId":id,"password":password,"name":name,"email":email}
 						, success:function(data){
 							if(data.result == "success"){
-								location.href = "/user/siginin/view";
+								location.href = "/user/signin/view";
 							}else{
 								alert("회원가입 실패");
 							}

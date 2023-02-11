@@ -11,14 +11,14 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/static/css/style.css" type="text/css">
 </head>
 <body>
 	<div class="container">
 		<section class="content d-flex justify-content-center my-5">
 			<div class="mr-5">
-				<img src="https://cdn.pixabay.com/photo/2015/03/05/11/20/dollar-660223_960_720.png" width="450">
+				<img src="https://cdn.pixabay.com/photo/2015/03/05/11/20/dollar-660223_960_720.png" alt="financialgram_logo" width="450">
 			</div>
 			<div>
 				<div class="login-box d-flex justify-content-center align-items-start bg-white  border rounded">		
