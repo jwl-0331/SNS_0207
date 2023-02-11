@@ -1,10 +1,6 @@
 @charset "UTF-8";
 
-#wrap{
-	width:1200px;
-	margin:auto;
-	background-color:#343a40;
-}
+
 header{
 	height:70px;
 }
@@ -13,7 +9,7 @@ header{
 	height:500px;
 }
 
-.contents > .join-box{
+.contents > .login-box{
 	height:450px;
 	width:350px;
 }
