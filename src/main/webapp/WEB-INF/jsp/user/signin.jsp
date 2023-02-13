@@ -25,6 +25,7 @@
 					<div class="w-100 p-5">			
 						<h2 class="text-center">Financialgram</h2>
 						<br>
+						<!-- form 을 통해 엔터도 지원 가능 -->
 						<form id="loginForm">
 							<input type="text" id="idInput" class="form-control mt-3" placeholder="아이디">
 							<input type="password" id="passwordInput" class="form-control mt-3" placeholder="패스워드">
@@ -47,16 +48,25 @@
 	
 	<script>
 		$(document).ready(function(){
-			$("#loginBtn").on("click",function(){
+			//엔터키도 지원
+			$("#loginForm").on("submit",function(e){
+			//$("#loginBtn").on("click",function(){
+				
+				// 해당 이벤트의 기능을 모두 취소한다 기능
+				// 이벤트 객체를 얻어내기 -> 파라미터로 얻어낸다 e (이벤트에 대한 처리)
+				e.preventDefault();
+				
 				let id = $("#idInput").val();
 				let password = $("#passwordInput").val();
 				
 				if(id == ""){
 					alert("아이디를 입력하세요.");
+					//return false;
 					return;
 				}
 				if(password == ""){
 					alert("비밀번호를 입력하세요.");
+					//return false;
 					return;
 				}
 				
@@ -75,6 +85,10 @@
 						alert("로그인 에러");
 					}
 				});
+				//return false;
+				// return false 를 통해 submit이 페이지이동하는것을 막아서
+				// 아이디 비밀번호를 유지 시킨다
+				// 유효성 검사에 모두 return false 일이 많다
 			});
 		});
 	</script>
