@@ -26,7 +26,7 @@
 						<h2 class="text-center">Financialgram</h2>
 						<br>
 						<form id="loginForm">
-							<input type="text" id="loginIdInput" class="form-control mt-3" placeholder="아이디">
+							<input type="text" id="idInput" class="form-control mt-3" placeholder="아이디">
 							<input type="password" id="passwordInput" class="form-control mt-3" placeholder="패스워드">
 							<button id="loginBtn" type="submit" class="btn btn-primary btn-block mt-3">로그인</button>
 							<hr/>
@@ -44,5 +44,39 @@
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 		
 	</div>
+	
+	<script>
+		$(document).ready(function(){
+			$("#loginBtn").on("click",function(){
+				let id = $("#idInput").val();
+				let password = $("#passwordInput").val();
+				
+				if(id == ""){
+					alert("아이디를 입력하세요.");
+					return;
+				}
+				if(password == ""){
+					alert("비밀번호를 입력하세요.");
+					return;
+				}
+				
+				$.ajax({
+					type:"post"
+					, url:"/user/signin"
+					, data:{"loginId":id, "password": password}
+					, success:function(data){
+						if(data.result == "success"){
+							location.href="/post/timeline/view";
+						}else{
+							alert("아이디또는 비밀번호를 확인해주세요.");
+						}
+					}
+					, error:function(){
+						alert("로그인 에러");
+					}
+				});
+			});
+		});
+	</script>
 </body>
 </html>
