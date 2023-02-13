@@ -55,6 +55,47 @@
 	</div>
 	<script>
 		$(document).ready(function(){
+			//중복 체크 여부 확인 변수
+			var isChecked = false;
+			
+			//id 중복 상태 저장변수 - 중복되어있다 초기 변수
+			var isDuplicate = true;
+			
+			//해당 input의 수정이 생길때마다 발생
+			$("#idInput").on("input",function(){
+				isChecked = false;
+				isDuplicate = true;
+				
+				$("#availableText").addClass("d-none");
+				$("#duplicateText").addClass("d-none");
+			});
+			$("#isDuplicateBtn").on("click",function(){
+				let id = $("#idInput").val();
+				if(id == ""){
+					alert("아이디를 입력해주세요");
+					return;
+				}
+				$.ajax({
+					type:"get"
+					, url:"/user/duplicate_id"
+					, data:{"loginId":id}
+					, success:function(data){
+						isChecked = true;
+						if(data.is_duplicate == false){
+							isDuplicate = false;
+							$("#availableText").removeClass("d-none");
+							$("#duplicateText").addClass("d-none");
+						}else{
+							isDuplicate = true;
+							$("#availableText").addClass("d-none");
+							$("#duplicateText").removeClass("d-none");
+						}
+					  }
+					, error:function(){
+						alert("중복확인 에러");
+					}
+				});
+			});
 			$("#signUpBtn").on("click",function(){
 				let id = $("#idInput").val();
 				let password = $("#passwordInput").val();
@@ -96,6 +137,16 @@
 				}
 				if(password != passwordChk){
 					alert("비밀번호가 일치하지 않습니다.");
+					return;
+				}
+				if(!isChecked){
+					//중복체크를 하지 않았다면
+					alert("중복을 확인하세요");
+					return;
+				}
+				if(isDuplicate){
+					//중복되어있다면
+					alert("아이디가 중복되었습니다.");
 					return;
 				}
 				

@@ -20,4 +20,14 @@ public class UserBO {
 		
 		return userDAO.insertUser(loginId, encryptPassword, name, email);
 	}
+	
+	public boolean isDuplicateId(String loginId) {
+		int count = userDAO.selectUserById(loginId);
+		
+		if(count == 0) {
+			return false;
+		}else {
+			return true;
+		}
+	}
 }
