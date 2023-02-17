@@ -85,7 +85,18 @@
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	
 	</div>
-	
+	<!-- Modal -->
+	<div class="modal fade" id="moreModal" tabindex="-1" role="dialog">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      
+	      <div class="modal-body text-center">
+	        <a href="#" id="deleteBtn"> 삭제하기 </a>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
 	<script>
 		$(document).ready(function() {
 		}
