@@ -16,3 +16,9 @@ header{
 footer{
 	height:50px;
 }
+
+.image-icon {
+	font-size:20px;
+	
+	color:black;
+}
