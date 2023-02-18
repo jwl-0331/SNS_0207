@@ -30,24 +30,25 @@
 					<div class="d-flex justify-content-between mt-2">
 						<a href="#" id="imageIcon" class="ml-3"> <i class="bi bi-image image-icon"></i> </a>
 						<input type="file" id="fileInput" class="d-none">
-						<button type="button" class="btn btn-primary" id="uploadBtn">업로드</button>
+						<button type="button" class="btn btn-info" id="uploadBtn">업로드</button>
 					
 					</div>
 				</div>
 				<!-- /입력 상자 -->
 				<!-- 피드 -->
 				<div class="mt-3">
+					<c:forEach var="postList" items="${postList }">
 					<!-- 카드 -->
-					<div class="border rounded mt-2">
+					<div class="card mt-2">
 						<div class="d-flex justify-content-between p-2">
-							<div>username</div>
+							<div>user name</div>
 							
 							<%--해당 게시글이 로그인한 사용자의 게시글인 경우 more 버튼 노출 --%>
 							<a href="#" class="more-btn" ><i class="bi bi-three-dots"></i></a>
 						</div>
 						
-						<div>
-							<img class="w-100" src="https://cdn.pixabay.com/photo/2023/01/27/06/17/pheasant-7747830_960_720.jpg">
+						<div class="mt-2">
+							<img width="100%" src="${postList.imagePath }">
 						</div>
 						
 						<div class="p-2">
@@ -59,13 +60,14 @@
 						</div>
 						
 						<div class="p-2" >
-							<b>username</b>content
+							<b>username</b>${postList.content }
 						</div>
 						<!--  댓글들! -->
 						<div class="p-2">
 							<div class="small">댓글</div>
 							<hr>
-							<div class="small"><b>userName</b>content</div>
+							<div class="small"><b>userName1</b> content1</div>
+							<div class="small"><b>userName2</b> content2</div>
 	
 	
 							<!--  댓글 입력 -->
@@ -78,7 +80,9 @@
 						</div>
 						<!--  /댓글들! -->
 					</div>
+					</c:forEach>
 				</div>
+				<!-- /피드 -->
 			</div>
 			<!--  /timeline -->
 		</section>
@@ -99,7 +103,45 @@
 	</div>
 	<script>
 		$(document).ready(function() {
-		}
+			
+			$("#uploadBtn").on("click", function(){
+				let content = $("#contentInput").val();
+				if(content == ""){
+					alert("내용을 입력해주세요");
+					return;
+				}
+				// 파일에 대한 유효성 검사 
+				if($("#fileInput")[0].files.length == 0) {
+					alert("이미지를 선택해주세요.");
+					return ;
+				}
+				var formData = new FormData();
+				formData.append("content", content);
+				formData.append("file", $("#fileInput")[0].files[0])
+				$.ajax({
+					type:"post"
+					, url:"/post/create"
+					, data:formData
+					, enctype:"multipart/form-data" // 파일 업로드 필수 항목
+					, processData:false // 파일 업로드 필수 항목
+					, contentType:false //파일 업로드 필수 항목 
+					, success:function(data){
+						if(data.result == "success"){
+							location.href= "/post/timeline/view"
+						}else{
+							alert("메모 저장 실패");
+						}
+					}
+					, error:function(){
+						alert("메모저장 에러");
+					}
+				});
+			});
+			$("#imageIcon").on("click", function(){
+				//파일 인풋을 클릭한 효과
+				$("#fileInput").click();
+			});
+		});
 	
 	</script>
 	

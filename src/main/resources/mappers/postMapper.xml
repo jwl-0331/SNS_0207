@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jwl.sns.post.dao.PostDAO">
+	<insert id="insertPost" parameterType="map">
+		INSERT INTO
+			`post`
+		(
+			`userId`
+			, `content`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUE
+		(
+			#{userId}
+			, #{content}
+			, #{imagePath}
+			, now()
+			, now()
+		)
+	</insert>
+	
+	<select id="selectPost" parameterType="int" resultType="com.jwl.sns.post.model.Post">
+		SELECT
+			`id`
+			, `userId`
+			, `content`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`post`
+		ORDER BY 
+			`id`
+			DESC
+	</select>
+</mapper>
