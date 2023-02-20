@@ -80,6 +80,7 @@
 						</div>
 						<!--  /댓글들! -->
 					</div>
+					<!-- 카드 -->
 					</c:forEach>
 				</div>
 				<!-- /피드 -->
@@ -111,12 +112,14 @@
 					return;
 				}
 				// 파일에 대한 유효성 검사 
+				// 파일 인풋에서 파일 배열을 가져온다. files 길이가 텅텅 비어있다면
 				if($("#fileInput")[0].files.length == 0) {
 					alert("이미지를 선택해주세요.");
 					return ;
 				}
 				var formData = new FormData();
 				formData.append("content", content);
+				//0번째 배열에서 0번쨰 파일 한개를 추가
 				formData.append("file", $("#fileInput")[0].files[0])
 				$.ajax({
 					type:"post"
@@ -127,13 +130,13 @@
 					, contentType:false //파일 업로드 필수 항목 
 					, success:function(data){
 						if(data.result == "success"){
-							location.href= "/post/timeline/view"
+							location.reload();
 						}else{
-							alert("메모 저장 실패");
+							alert("업로드 실패");
 						}
 					}
 					, error:function(){
-						alert("메모저장 에러");
+						alert("업로드 에러");
 					}
 				});
 			});

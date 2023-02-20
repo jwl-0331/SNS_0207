@@ -1,4 +1,4 @@
-package com.jwl.sns.config;
+package com.jwl.sns.common;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,23 +35,23 @@ public class FileManagerService {
 		if(directory.mkdir() == false) {
 			//디렉토리 생성 실패
 			//디렉토리 생성 실패 로그 추가
-			logger.error("savefile : 디렉토리 생성 실패");
+			logger.error("savefile : 디렉토리 생성 실패" + directoryPath );
 			return null;
 		}
 				
 		//파일 다루기 까다롭다 문제 생길 가능성을 관리를 해주어야한다
-				
+		String filePath = null;		
 		//파일 저장
 		try {
 			byte[] bytes = file.getBytes();
 					
-			String filePath = directoryPath + file.getOriginalFilename();
+			filePath = directoryPath + file.getOriginalFilename();
 			Path path = Paths.get(filePath);
 			Files.write(path, bytes);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-					
+			logger.error("saveFile: 파일 생성 에러 - " + filePath);		
 			return null;
 		}
 				

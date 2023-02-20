@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.jwl.sns.config.FileManagerService;
+import com.jwl.sns.common.FileManagerService;
 import com.jwl.sns.post.dao.PostDAO;
 import com.jwl.sns.post.model.Post;
 
@@ -25,6 +25,8 @@ public class PostBO {
 	}
 	
 	public List<Post> getPostList(int userId) {
+		
+		
 		
 		return postDAO.selectPost(userId);
 	}
