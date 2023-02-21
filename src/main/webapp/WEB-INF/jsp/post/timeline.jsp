@@ -56,7 +56,7 @@
 							<a href="#" class="unlike-btn" data-post-id="${post.id }"><i class="bi bi-heart-fill text-danger"></i></a>
 							<%-- 로그인한 사용자가 좋아요를 하지 않은 게시물 --%>
 							<a href="#" class="like-btn" data-post-id="${post.id }"><span class=""><i class="bi bi-heart"></i></span></a>
-							좋아요 3개
+							좋아요 ${post.likeCount }개
 						</div>
 						
 						<div class="p-2" >
@@ -72,8 +72,8 @@
 	
 							<!--  댓글 입력 -->
 							<div class="d-flex mt-1">
-								<input type="text" class="form-control">
-								<button type="button" class="btn btn-primary comment-btn">게시</button>
+								<input type="text" class="form-control" id="commentInput">
+								<button type="button" class="btn btn-primary comment-btn" data-post-id="${post.id }">게시</button>
 							</div>
 							<!--  /댓글 입력 -->
 						
@@ -104,6 +104,31 @@
 	</div>
 	<script>
 		$(document).ready(function() {
+			
+			$(".comment-btn").on("click", function(e){
+				
+				let postId = $(this).data("post-id");
+				let comment = $("#commentInput").val();
+				
+				if(comment == ""){
+					alert("댓글을 입력해주세요");
+				}
+				$.ajax({
+					type:"post"
+					, url:"/post/comment/create"
+					, data:{"postId":postId, "content":comment}
+					, success:function(data){
+						if(data.result == "success"){
+							location.reload();
+						}else{
+							alert("댓글쓰기 실패");
+						}
+					}
+					, error:function(){
+						alert("댓글 쓰기 에러");
+					}
+				});
+			});
 			
 			$(".unlike-btn").on("click",function(e){
 				

@@ -7,6 +7,7 @@ public class PostDetail {
 	
 	private int id;
 	private int userId;
+	private int likeCount;
 	private String userName;
 	private String content;
 	private String imagePath;
@@ -21,6 +22,12 @@ public class PostDetail {
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+	public int getLikeCount() {
+		return likeCount;
+	}
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
 	}
 	public String getUserName() {
 		return userName;

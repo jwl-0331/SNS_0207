@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.jwl.sns.common.FileManagerService;
 import com.jwl.sns.post.dao.PostDAO;
+import com.jwl.sns.post.like.bo.LikeBO;
 import com.jwl.sns.post.model.Post;
 import com.jwl.sns.post.model.PostDetail;
 import com.jwl.sns.user.bo.UserBO;
@@ -16,6 +17,9 @@ import com.jwl.sns.user.model.User;
 
 @Service
 public class PostBO {
+	
+	@Autowired
+	private LikeBO likeBO;
 	
 	@Autowired
 	private PostDAO postDAO;
@@ -40,8 +44,10 @@ public class PostBO {
 		for(Post post:postList) {
 			//postDetail 객체를 생성, post 객체의 정보를저장
 			PostDetail postDetail = new PostDetail();
+			int likeCount = likeBO.getLikeCount(post.getId());
 			postDetail.setId(post.getId());
 			postDetail.setUserId(post.getUserId());
+			postDetail.setLikeCount(likeCount);
 			postDetail.setContent(post.getContent());
 			postDetail.setImagePath(post.getImagePath());
 			

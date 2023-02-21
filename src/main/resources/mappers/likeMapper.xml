@@ -37,6 +37,5 @@
 			`like`
 		WHERE
 			`postId` = #{postId}
-			AND `userId` = #{userId}
 	</select>
 </mapper>
