@@ -37,30 +37,30 @@
 				<!-- /입력 상자 -->
 				<!-- 피드 -->
 				<div class="mt-3">
-					<c:forEach var="postList" items="${postList }">
+					<c:forEach var="post" items="${postList }">
 					<!-- 카드 -->
 					<div class="card mt-2">
 						<div class="d-flex justify-content-between p-2">
-							<div>user name</div>
+							<div>${post.userName }</div>
 							
 							<%--해당 게시글이 로그인한 사용자의 게시글인 경우 more 버튼 노출 --%>
 							<a href="#" class="more-btn" ><i class="bi bi-three-dots"></i></a>
 						</div>
 						
 						<div class="mt-2">
-							<img width="100%" src="${postList.imagePath }">
+							<img width="100%" src="${post.imagePath }">
 						</div>
 						
 						<div class="p-2">
 							<%-- 로그인한 사용자가 좋아요한 게시물 --%>
 							<a href="#" class="unlike-btn"><i class="bi bi-heart-fill text-danger"></i></a>
 							<%-- 로그인한 사용자가 좋아요를 하지 않은 게시물 --%>
-							<a href="#" class="like-btn"><span class=""><i class="bi bi-heart"></i></span></a>
+							<a href="#" class="like-btn" data-post-id="${post.id }"><span class=""><i class="bi bi-heart"></i></span></a>
 							좋아요 3개
 						</div>
 						
 						<div class="p-2" >
-							<b>username</b>${postList.content }
+							<b>${post.userName }</b>${post.content }
 						</div>
 						<!--  댓글들! -->
 						<div class="p-2">
@@ -105,6 +105,32 @@
 	<script>
 		$(document).ready(function() {
 			
+			$(".like-btn").on("click", function(e) {
+							
+				e.preventDefault();
+							
+				let postId = $(this).data("post-id");
+							
+				$.ajax({
+					type:"get"
+					, url:"/post/like"
+					, data:{"postId":postId}
+					, success:function(data) {
+									
+						if(data.result == "success") {
+							location.reload();
+						} else {
+							alert("좋아요 실패!");
+						}
+									
+					}
+					, error:function() {
+						alert("좋아요 에러");
+					}
+								
+				});
+							
+			});
 			$("#uploadBtn").on("click", function(){
 				let content = $("#contentInput").val();
 				if(content == ""){

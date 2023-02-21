@@ -1,4 +1,4 @@
-package com.jwl.sns.post;
+package com.jwl.sns.post.comment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,33 +8,34 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.jwl.sns.post.bo.PostBO;
+import com.jwl.sns.post.comment.bo.CommentBO;
 
 import jakarta.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("/post")
-public class PostRestController {
+@RequestMapping("/post/comment")
+public class CommentRestController {
+	
+	
 	@Autowired
-	private PostBO postBO;
+	private CommentBO commentBO;
 	@PostMapping("/create")
-	public Map<String, String> createPost(
-			@RequestParam("content")String content
-			,@RequestParam("file") MultipartFile file
-			, HttpSession session){
+	public Map<String, String> createComment(
+			@RequestParam("postId")int postId
+			,@RequestParam("content")String content
+			,HttpSession session) {
 		
-		int userId	= (int)session.getAttribute("userId");
-		int count = postBO.addPost(userId, content, file);
-		
+		int userId = (int)session.getAttribute("userId");
+		int count = commentBO.addComment(userId, postId, content);
+	
 		Map<String, String> result = new HashMap<>();
-		if(count == 1) {
-			result.put("result", "success");
+		if(count == 1){
+			result.put("result","success");
 		}else {
 			result.put("result", "fail");
 		}
+		
 		return result;
 	}
-	
 }

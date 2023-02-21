@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jwl.sns.post.bo.PostBO;
-import com.jwl.sns.post.model.Post;
+import com.jwl.sns.post.model.PostDetail;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -23,9 +23,9 @@ public class PostController {
 	public String timelineView(Model model
 			, HttpSession session ) {
 		int userId = (int)session.getAttribute("userId");
-		List<Post> postList = postBO.getPostList(userId);
+		List<PostDetail> postDetailList = postBO.getPostList(userId);
 		
-		model.addAttribute("postList",postList);
+		model.addAttribute("postList",postDetailList);
 		
 		return "post/timeline";
 	}

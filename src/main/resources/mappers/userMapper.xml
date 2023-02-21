@@ -52,4 +52,19 @@
  			AND `password` = #{password}
  			
  	</select>
+ 	
+ 	<select id="selectUserByIdp" parameterType="int" resultType="com.jwl.sns.user.model.User">
+ 		SELECT
+ 			`id`
+	 		, `loginId`
+	 		, `password`
+	 		, `name`
+	 		, `email`
+	 		, `createdAt`
+	 		, `updatedAt`
+	 	FROM
+	 		`user`
+	 	WHERE
+	 		`id` = #{id}
+ 	</select>
  </mapper>
