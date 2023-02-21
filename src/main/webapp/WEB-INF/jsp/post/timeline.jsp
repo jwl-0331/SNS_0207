@@ -53,7 +53,7 @@
 						
 						<div class="p-2">
 							<%-- 로그인한 사용자가 좋아요한 게시물 --%>
-							<a href="#" class="unlike-btn"><i class="bi bi-heart-fill text-danger"></i></a>
+							<a href="#" class="unlike-btn" data-post-id="${post.id }"><i class="bi bi-heart-fill text-danger"></i></a>
 							<%-- 로그인한 사용자가 좋아요를 하지 않은 게시물 --%>
 							<a href="#" class="like-btn" data-post-id="${post.id }"><span class=""><i class="bi bi-heart"></i></span></a>
 							좋아요 3개
@@ -104,6 +104,29 @@
 	</div>
 	<script>
 		$(document).ready(function() {
+			
+			$(".unlike-btn").on("click",function(e){
+				
+				e.preventDefault();
+				
+				let postId = $(this).data("post-id");
+				
+				$.ajax({
+					type:"get"
+					, url:"/post/unlike"
+					, data:{"postId":postId}
+					, success:function(data){
+						if(data.result="success"){
+							location.reload();
+						}else{
+							alert("삭제 실패");
+						}
+					}
+					, error:function(data){
+						alert("삭제 에러");
+					}
+				});
+			});
 			
 			$(".like-btn").on("click", function(e) {
 							
