@@ -25,4 +25,14 @@ public class LikeBO {
 	public int getLikeCount(int postId) {
 		return likeDAO.selectCountLike(postId);
 	}
+	
+	//postID 와 userId 를 전달 받고 좋아요 여부 리턴하는 메소드
+	public boolean isLike(int postId, int userId) {
+		int count = likeDAO.selectLikeCountByUserId(postId, userId);
+		if(count == 0) {
+			return false;
+		}else {
+			return true;
+		}
+	}
 }

@@ -52,11 +52,19 @@
 						</div>
 						
 						<div class="p-2">
-							<%-- 로그인한 사용자가 좋아요한 게시물 --%>
-							<a href="#" class="unlike-btn" data-post-id="${post.id }"><i class="bi bi-heart-fill text-danger"></i></a>
-							<%-- 로그인한 사용자가 좋아요를 하지 않은 게시물 --%>
-							<a href="#" class="like-btn" data-post-id="${post.id }"><span class=""><i class="bi bi-heart"></i></span></a>
+							<c:choose>
+								<%-- 로그인한 사용자가 좋아요한 게시물 --%>
+								<%-- is like getter 함수 다르게 불러온다 --%>
+								<c:when test="${post.like }">
+									<a href="#" class="unlike-btn" data-post-id="${post.id }"><i class="bi bi-heart-fill text-danger"></i></a>
+								</c:when>
+								<%-- 로그인한 사용자가 좋아요를 하지 않은 게시물 --%>
+								<c:otherwise>
+									<a href="#" class="like-btn" data-post-id="${post.id }"><span class=""><i class="bi bi-heart"></i></span></a>
+								</c:otherwise>
+							</c:choose>
 							좋아요 ${post.likeCount }개
+							
 						</div>
 						
 						<div class="p-2" >
@@ -72,7 +80,7 @@
 	
 							<!--  댓글 입력 -->
 							<div class="d-flex mt-1">
-								<input type="text" class="form-control" id="commentInput">
+								<input type="text" class="form-control" id="commentInput${post.id }">
 								<button type="button" class="btn btn-primary comment-btn" data-post-id="${post.id }">게시</button>
 							</div>
 							<!--  /댓글 입력 -->
@@ -108,7 +116,7 @@
 			$(".comment-btn").on("click", function(e){
 				
 				let postId = $(this).data("post-id");
-				let comment = $("#commentInput").val();
+				let comment = $("#commentInput" + postId).val();
 				
 				if(comment == ""){
 					alert("댓글을 입력해주세요");

@@ -45,6 +45,9 @@ public class PostBO {
 			//postDetail 객체를 생성, post 객체의 정보를저장
 			PostDetail postDetail = new PostDetail();
 			int likeCount = likeBO.getLikeCount(post.getId());
+			//로그인한 사용자의 아이디 post.userId -> 포스트를 작성한 사용자 id
+			boolean isLike = likeBO.isLike(post.getId(), userId);
+			postDetail.setLike(isLike);
 			postDetail.setId(post.getId());
 			postDetail.setUserId(post.getUserId());
 			postDetail.setLikeCount(likeCount);
