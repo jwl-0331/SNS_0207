@@ -1,5 +1,8 @@
 package com.jwl.sns.post.model;
 
+import java.util.List;
+
+import com.jwl.sns.post.comment.model.CommentDetail;
 
 //하나의 카드를 구성하기위한 DTO
 //우리가 만들 데이터를 구성
@@ -12,6 +15,13 @@ public class PostDetail {
 	private String content;
 	private String imagePath;
 	private boolean isLike;
+	private List<CommentDetail> commentList;
+	public List<CommentDetail> getCommentList() {
+		return commentList;
+	}
+	public void setCommentList(List<CommentDetail> commentList) {
+		this.commentList = commentList;
+	}
 	public boolean isLike() {
 		return isLike;
 	}

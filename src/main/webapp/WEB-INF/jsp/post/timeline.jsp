@@ -74,10 +74,9 @@
 						<div class="p-2">
 							<div class="small">댓글</div>
 							<hr>
-							<div class="small"><b>userName1</b> content1</div>
-							<div class="small"><b>userName2</b> content2</div>
-	
-	
+							<c:forEach var="comment" items="${post.commentList }">
+								<div class="small"><b>${comment.userName }</b> ${comment.content }</div>
+							</c:forEach>
 							<!--  댓글 입력 -->
 							<div class="d-flex mt-1">
 								<input type="text" class="form-control" id="commentInput${post.id }">
